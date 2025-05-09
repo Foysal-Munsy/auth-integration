@@ -4,8 +4,17 @@ import "./Navbar.css";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const NavBar = () => {
-  const { user } = use(AuthContext);
-  console.log(user);
+  const { user, signOutUser } = use(AuthContext);
+  // console.log(user);
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("user signed out successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const links = (
     <>
       <li>
@@ -53,7 +62,9 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <a className="btn">Sign Out</a>
+          <a onClick={handleSignOut} className="btn">
+            Sign Out
+          </a>
         ) : (
           <NavLink to="/login">Login</NavLink>
         )}
