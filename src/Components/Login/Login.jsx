@@ -1,8 +1,6 @@
-import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase.init";
+import { use } from "react";
 
 const Login = () => {
   const { signInUser } = use(AuthContext);
@@ -26,13 +24,14 @@ const Login = () => {
    * 2. old user?
    * 3.sign out?
    */
-  onAuthStateChanged(auth, (currentUser) => {
-    if (currentUser) {
-      console.log("has current user ", currentUser);
-    } else {
-      console.log("no user", currentUser);
-    }
-  });
+  //   onAuthStateChanged(auth, (currentUser) => {
+  //     if (currentUser) {
+  //       console.log("has current user ", currentUser);
+  //     } else {
+  //       console.log("no user", currentUser);
+  //     }
+  //   });
+
   return (
     <div className="card bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-2xl my-10">
       <h3 className="text-2xl text-center font-bold">Login now!</h3>

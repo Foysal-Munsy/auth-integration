@@ -4,8 +4,8 @@ import "./Navbar.css";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const NavBar = () => {
-  const userInfo = use(AuthContext);
-  console.log(userInfo);
+  const { user } = use(AuthContext);
+  console.log(user);
   const links = (
     <>
       <li>
@@ -52,7 +52,11 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <a className="btn">Sign Out</a>
+        ) : (
+          <NavLink to="/login">Login</NavLink>
+        )}
       </div>
     </div>
   );
